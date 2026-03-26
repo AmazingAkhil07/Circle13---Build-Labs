@@ -3,8 +3,8 @@ import Razorpay from "razorpay";
 import { supabaseAdmin } from "@/lib/supabase";
 
 const razorpay = new Razorpay({
-  key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID as string,
-  key_secret: process.env.RAZORPAY_KEY_SECRET as string,
+  key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "dummy_key",
+  key_secret: process.env.RAZORPAY_KEY_SECRET || "dummy_secret",
 });
 
 export async function POST(req: Request) {
