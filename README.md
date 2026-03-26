@@ -1,53 +1,36 @@
-<div align="center">
-  <h1>Circle13 — AI Build Labs</h1>
-  <p>
-    <strong>2-Hour Hands-On Execution Sprints for Builders.</strong><br>
-    <em>No slides. No theory. Only working AI systems.</em>
-  </p>
-</div>
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
----
+## Getting Started
 
-## 🛑 The Execution Gap
+First, run the development server:
 
-The market is flooded with AI "awareness" content, 5-minute tool overviews, and endless YouTube tutorials. Most of them stop at theory. People watch, nod, and do nothing.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-**Circle13 fixes this gap.** We force build-first learning where the output isn't a certificate — it's a working automation system, a deployed AI agent, or a personalized prompt vault you built yourself during the session.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🏆 What You Walk Away With
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Every 2-hour Buildlab is ruthlessly practical. You leave with:
-- **Prompt Vault Starter Pack:** Turnkey Notion templates to store and scale your prompts.
-- **AI Workflow Blueprints:** Plug-and-play architectural diagrams (n8n / JSON).
-- **Tool Stack Guides:** The exact frameworks we use in production.
-- **Replay Access:** 48-hour access to re-watch the build step-by-step.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
----
+## Learn More
 
-## 🛤️ Our Buildlab Tracks (SKUs)
+To learn more about Next.js, take a look at the following resources:
 
-We run highly focused, 2-hour live sprints based on your specific goals.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-| Track | Focus | What You Build |
-|-------|-------|----------------|
-| **Track A: AI Tools** | Master the modern AI tool stack. | A working custom bot + blueprint |
-| **Track B: Prompts** | Create frameworks that don't break. | 5+ reusable business prompt templates |
-| **Track C: Automation** | Wire AI into real-world workflows. | End-to-end autonomous pipeline (n8n) |
-| **Track D: MVP Sprint** | Turn raw ideas into software products. | Demo-ready AI-assisted MVP |
-| **Track E: Applied AI** | Deploy specific industry solutions. | An internal company agent tool |
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
----
+## Deploy on Vercel
 
-## 🎯 Who is this for?
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-- **The Curious Builder:** You know AI is powerful, but you need a structured, forced environment to finally build something real.
-- **The Founder / Freelancer:** You want to automate your ops, content, and outreach without hiring an agency.
-- **The Engineer:** You want to integrate advanced Prompt Engineering and LLM pipelines into your existing web or mobile apps.
-
-<div align="center">
-  <br>
-  <h3>Ready to ship?</h3>
-  <a href="https://circle13.in"><strong>View Upcoming Buildlabs &rarr;</strong></a>
-  <br><br>
-  <p><em>Seats strictly limited to ensure an elite building experience.</em></p>
-</div>
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
