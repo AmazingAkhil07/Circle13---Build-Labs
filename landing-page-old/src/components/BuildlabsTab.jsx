@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Settings, MessageSquare, Repeat, Rocket, GraduationCap, PenTool, Play, ArrowRight, Check } from 'lucide-react';
-import { FeatureCard } from './FeatureCard';
-import { RegistrationForm } from './RegistrationForm';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -47,36 +44,7 @@ const timeline = [
   { time: "15 min", title: "Next Steps", desc: "We help you ship it", icon: ArrowRight }
 ];
 
-const pricingTiers = [
-  {
-    id: "Early Bird",
-    title: "Early Bird",
-    price: 399,
-    highlight: false,
-    features: ['Buildlab Access', 'Session Recording', 'Base Resources'],
-    ctaText: "Register"
-  },
-  {
-    id: "Standard",
-    title: "Standard",
-    price: 799,
-    highlight: true,
-    features: ['Buildlab Access', 'Session Recording', 'Prompt Vault', 'Premium Templates'],
-    ctaText: "Register"
-  },
-  {
-    id: "Bundle",
-    title: "Builder Bundle",
-    price: 1499,
-    highlight: false,
-    features: ['Everything in Standard', '1:1 Architecture Audit', 'VIP Community', 'Next Lab Free'],
-    ctaText: "Register"
-  }
-];
-
 const BuildlabsTab = () => {
-  const [selectedTier, setSelectedTier] = useState(null);
-  
   return (
     <div className="w-full pb-24">
       
@@ -191,8 +159,8 @@ const BuildlabsTab = () => {
         </div>
       </section>
 
-      {/* Pricing Table via FeatureCard */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative" id="pricing-section">
+      {/* Pricing Table */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-premium-gold/5 rounded-full blur-[100px] pointer-events-none" />
         
         <motion.div 
@@ -206,34 +174,83 @@ const BuildlabsTab = () => {
           <p className="text-premium-gray">Invest in your skills. Get ROI on day one.</p>
         </motion.div>
 
-        <div className="relative z-10 w-full mb-16">
-          <FeatureCard 
-            tiers={pricingTiers} 
-            onSelectTier={(tierId) => {
-              setSelectedTier(tierId);
-              setTimeout(() => {
-                document.getElementById('registration-section')?.scrollIntoView({ behavior: 'smooth' });
-              }, 100);
-            }} 
-          />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+          {/* Tier 1 */}
+          <motion.div 
+            className="p-8 rounded-sm bg-premium-black border border-premium-charcoal flex flex-col hover:border-premium-gray transition-colors"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-xl font-bold text-premium-white mb-2">Early Bird</h3>
+            <p className="text-premium-gray text-sm mb-6 pb-6 border-b border-premium-charcoal">First 24-48 hours</p>
+            <div className="mb-8">
+              <span className="text-4xl font-bold text-premium-white">₹399</span>
+            </div>
+            <ul className="space-y-4 mb-8 flex-1">
+              {['Buildlab Access', 'Session Recording', 'Base Resources'].map((feature, i) => (
+                <li key={i} className="flex items-center gap-3 text-premium-gray">
+                  <Check size={18} className="text-premium-gold" /> {feature}
+                </li>
+              ))}
+            </ul>
+            <button className="w-full py-4 border border-premium-charcoal text-premium-white font-semibold rounded-sm hover:border-premium-gold hover:text-premium-gold transition-colors">
+              Register
+            </button>
+          </motion.div>
+
+          {/* Tier 2 - Popular */}
+          <motion.div 
+            className="p-8 rounded-sm bg-premium-dark border-2 border-premium-gold shadow-[0_0_30px_rgba(212,175,55,0.1)] flex flex-col transform md:-translate-y-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <div className="bg-premium-gold text-premium-black text-xs font-bold uppercase tracking-wider py-1 px-3 rounded-sm inline-block w-max mb-4">Most Popular</div>
+            <h3 className="text-xl font-bold text-premium-white mb-2">Standard</h3>
+            <p className="text-premium-gray text-sm mb-6 pb-6 border-b border-premium-charcoal">Regular price</p>
+            <div className="mb-8">
+              <span className="text-4xl font-bold text-premium-white">₹799</span>
+            </div>
+            <ul className="space-y-4 mb-8 flex-1">
+              {['Buildlab Access', 'Session Recording', 'Prompt Vault', 'Premium Templates'].map((feature, i) => (
+                <li key={i} className="flex items-center gap-3 text-premium-white">
+                  <Check size={18} className="text-premium-gold" /> {feature}
+                </li>
+              ))}
+            </ul>
+            <button className="w-full py-4 bg-premium-gold text-premium-black font-bold rounded-sm hover:bg-premium-goldHover transition-colors shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+              Register
+            </button>
+          </motion.div>
+
+          {/* Tier 3 */}
+          <motion.div 
+            className="p-8 rounded-sm bg-premium-black border border-premium-charcoal flex flex-col hover:border-premium-gray transition-colors"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-xl font-bold text-premium-white mb-2">Builder Bundle</h3>
+            <p className="text-premium-gray text-sm mb-6 pb-6 border-b border-premium-charcoal">Go all-in</p>
+            <div className="mb-8">
+              <span className="text-4xl font-bold text-premium-white">₹1,499</span>
+            </div>
+            <ul className="space-y-4 mb-8 flex-1">
+              {['Everything in Standard', '1:1 Architecture Audit', 'VIP Community Access', 'Next Buildlab Free'].map((feature, i) => (
+                <li key={i} className="flex items-center gap-3 text-premium-gray">
+                  <Check size={18} className="text-premium-gold" /> {feature}
+                </li>
+              ))}
+            </ul>
+            <button className="w-full py-4 border border-premium-charcoal text-premium-white font-semibold rounded-sm hover:border-premium-gold hover:text-premium-gold transition-colors">
+              Register
+            </button>
+          </motion.div>
         </div>
       </section>
-
-      {/* Conditional Registration Form */}
-      {selectedTier && (
-        <section id="registration-section" className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-20">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col items-center"
-          >
-            <h2 className="text-3xl font-bold text-premium-white mb-8 text-center border-t border-premium-charcoal pt-12 w-full">Complete Registration</h2>
-            <div className="w-full flex justify-center">
-              <RegistrationForm />
-            </div>
-          </motion.div>
-        </section>
-      )}
 
     </div>
   );

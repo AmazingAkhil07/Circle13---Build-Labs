@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { BookOpen, Target, Briefcase, ChevronRight, Brain } from 'lucide-react';
-import { CountdownTimer } from './CountdownTimer';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -117,10 +116,11 @@ const HomeTab = ({ onNavigate }) => {
             variants={fadeIn}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-premium-white mb-6">
-              Ready to learn? Registration closing soon.
+              Ready to learn? Next Buildlab starts March 29.
             </h2>
-            <div className="mb-10 w-full flex justify-center">
-              <CountdownTimer targetDate={new Date(Date.now() + 48 * 60 * 60 * 1000)} />
+            <div className="inline-flex items-center gap-2 mb-10 px-6 py-2 rounded-full border border-premium-gold/30 bg-premium-gold/5 text-premium-gold font-mono text-sm tracking-widest uppercase">
+              <span className="w-2 h-2 rounded-full bg-premium-gold animate-pulse" />
+              Registrations close in 48 hours
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">

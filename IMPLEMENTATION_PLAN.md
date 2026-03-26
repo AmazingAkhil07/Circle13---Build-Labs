@@ -153,7 +153,7 @@ npx create-next-app@latest circle13 --typescript --tailwind --app
 cd circle13
 
 # Install all dependencies at once
-npm install @supabase/supabase-js razorpay @anthropic-ai/sdk resend \
+npm install @supabase/supabase-js razorpay groq-sdk resend \
   react-hook-form zod @hookform/resolvers \
   framer-motion \
   @radix-ui/react-dialog @radix-ui/react-select \
@@ -170,7 +170,7 @@ NEXT_PUBLIC_RAZORPAY_KEY_ID=rzp_test_xxx
 RAZORPAY_KEY_SECRET=xxx
 RAZORPAY_WEBHOOK_SECRET=xxx
 
-ANTHROPIC_API_KEY=sk-ant-xxx
+GROQ_API_KEY=gsk_xxx
 
 RESEND_API_KEY=re_xxx
 EMAIL_FROM=hello@circle13.in
@@ -440,9 +440,9 @@ For India, use WATI — easiest setup.
 **Create `app/api/chat/route.ts`:**
 
 ```typescript
-import Anthropic from "@anthropic-ai/sdk"
+import Groq from "groq-sdk"
 
-const client = new Anthropic()
+const client = new Groq()
 
 const SYSTEM_PROMPT = `You are C13, the AI assistant for Circle13 Build Lab.
 // ... paste full system prompt from AI_AGENTS.md Agent 1
@@ -451,14 +451,31 @@ const SYSTEM_PROMPT = `You are C13, the AI assistant for Circle13 Build Lab.
 export async function POST(req: Request) {
   const { messages } = await req.json()
 
-  const stream = await client.messages.stream({
-    model: "claude-sonnet-4-20250514",
+  const response = await client.chat.completions.create({
+    model: "llama-3.1-8b-instant",
     max_tokens: 512,
-    system: SYSTEM_PROMPT,
-    messages,
+    messages: [
+      { role: "system", content: SYSTEM_PROMPT },
+      ...messages
+    ],
+    stream: true
   })
 
-  return new Response(stream.toReadableStream(), {
+  // Basic streaming setup for simple fetch reading
+  const encoder = new TextEncoder();
+  const readable = new ReadableStream({
+    async start(controller) {
+      for await (const chunk of response) {
+        const content = chunk.choices[0]?.delta?.content || "";
+        if (content) {
+          controller.enqueue(encoder.encode(content));
+        }
+      }
+      controller.close();
+    }
+  });
+
+  return new Response(readable, {
     headers: { "Content-Type": "text/event-stream" }
   })
 }
